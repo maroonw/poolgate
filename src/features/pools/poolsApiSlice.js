@@ -17,7 +17,6 @@ export const poolsApiSlice = apiSlice.injectEndpoints({
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5, // may change to 60 for deployment
             transformResponse: responseData => {
                 const loadedPools = responseData.map(pool => {
                     pool.id = pool._id
@@ -34,11 +33,48 @@ export const poolsApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Pool', id: 'LIST' }]
             }
         }),
+        addNewPool: builder.mutation({
+            query: initialPool => ({
+                url: '/pools',
+                method: 'POST',
+                body: {
+                    ...initialPool,
+                }
+            }),
+            invalidatesTags: [
+                { type: 'Pool', id: "LIST" }
+            ]
+        }),
+        updatePool: builder.mutation({
+            query: initialPool => ({
+                url: '/pools',
+                method: 'PATCH',
+                body: {
+                    ...initialPool,
+                }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Pool', id: arg.id }
+            ]
+        }),
+        deletePool: builder.mutation({
+            query: ({ id }) => ({
+                url: `/pools`,
+                method: 'DELETE',
+                body: { id }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Pool', id: arg.id }
+            ]
+        }),
     }),
 })
 
 export const {
     useGetPoolsQuery,
+    useAddNewPoolMutation,
+    useUpdatePoolMutation,
+    useDeletePoolMutation,
 } = poolsApiSlice
 
 // returns the query result object
