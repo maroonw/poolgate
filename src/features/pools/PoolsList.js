@@ -33,11 +33,11 @@ const PoolsList = () => {
             <table className="table table--pools">
                 <thead className="table__thead">
                     <tr>
-                        <th scope="col" className="table__th pool__status">Username</th>
+                        <th scope="col" className="table__th pool__username">Owner</th>
                         <th scope="col" className="table__th pool__created">Created</th>
                         <th scope="col" className="table__th pool__updated">Updated</th>
-                        <th scope="col" className="table__th pool__title">Title</th>
-                        <th scope="col" className="table__th pool__username">Owner</th>
+                        <th scope="col" className="table__th pool__title">Description</th>
+                        <th scope="col" className="table__th pool__address">Address</th>
                         <th scope="col" className="table__th pool__edit">Edit</th>
                     </tr>
                 </thead>

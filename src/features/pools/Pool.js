@@ -15,19 +15,11 @@ const Pool = ({ poolId }) => {
 
         return (
             <tr className="table__row">
-                <td className="table__cell pool__status">
-                    {pool.completed ? (
-                        <span className="pool__status--completed">Completed</span>
-                    ) : (
-                        <span className="pool__status--open">Open</span>
-                    )}
-                </td>
+                <td className="table__cell pool__username">{pool.username}</td>
                 <td className="table__cell pool__created">{created}</td>
                 <td className="table__cell pool__updated">{updated}</td>
                 <td className="table__cell pool__poolname">{pool.poolname}</td>
                 <td className="table__cell pool__address">{pool.address}</td>
-                <td className="table__cell pool__description">{pool.description}</td>
-                <td className="table__cell pool__username">{pool.username}</td>
                 <td className="table__cell">
                     <button className="icon-button table__button" onClick={handleEdit}>
                         <FontAwesomeIcon icon={faPenToSquare} />
